@@ -1,9 +1,13 @@
 import pandas as pd
-import geopandas as pg
+import geopandas as gp
 import pyproj
 from shapely.geometry import LineString, Point
 import matplotlib.pyplot as plt
+"""
+%pylab to set IPython up with matplotlib backend
+so can use plot()
 
+"""
 
 bng = pyproj.Proj(init='epsg:27700')
 wgs84 = pyproj.Proj(init='epsg:4326')
@@ -22,7 +26,7 @@ for row in busroutes.itertuples(): #Location_Easting = index[8], Location_Northi
 	geometry.append(point)
 
 
-busroutes = pg.GeoDataFrame(busroutes, crs=crs, geometry=geometry)
+busroutes = gp.GeoDataFrame(busroutes, crs=crs, geometry=geometry)
 
 
 
@@ -52,6 +56,4 @@ h13_route.length # = 0.13353557348356146
 
 h13_out_start.get_values()[0].distance(h13_out_end.get_values()[0]) # = 0.015038338777859562
 
-"""
-HOw to add this in as columns
-"""
+h13_out.plot()
